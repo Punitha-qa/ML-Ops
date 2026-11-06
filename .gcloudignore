@@ -6,3 +6,6 @@ artifacts
 reports
 build
 .env
+videos
+.video-venv
+*.mp4

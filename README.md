@@ -107,7 +107,7 @@ This teaching implementation includes packaging and validation checks. A product
 
 ## Optional cloud deployment
 
-Follow [Docker and Cloud Run instructions](labs/2_model_deployment/CLOUD.md) after the local API works. The guide includes prerequisites, public-access behavior, billing considerations and cleanup.
+Follow [Docker and cloud deployment instructions](labs/2_model_deployment/CLOUD.md) after the local API works. The guide includes prerequisites, public-access behavior, billing considerations and cleanup. Free compute does not guarantee signup without payment verification; check the provider's account requirements before the workshop.
 
 ## Verify the implementation
 

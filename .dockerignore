@@ -7,3 +7,6 @@ reports
 build
 .env
 tests
+videos
+.video-venv
+*.mp4
