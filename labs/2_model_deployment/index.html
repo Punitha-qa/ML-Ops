@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SMS Spam Filter</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f4f7fb;color:#182338;font:17px/1.5 system-ui,sans-serif}main{max-width:650px;margin:10vh auto;padding:28px}h1{font-size:clamp(32px,7vw,48px);letter-spacing:-.04em;margin:0 0 12px}p{color:#58677d}label{display:block;font-weight:650;margin:24px 0 8px}textarea{width:100%;min-height:150px;padding:14px;border:1px solid #b9c7dd;border-radius:12px;font:inherit}button{margin-top:14px;padding:12px 20px;border:0;border-radius:10px;background:#2457d6;color:white;font:inherit;font-weight:650;cursor:pointer}button:disabled{opacity:.6;cursor:wait}button:focus-visible,textarea:focus-visible{outline:3px solid #93b3ff;outline-offset:3px}#result{min-height:65px;margin-top:22px;font-weight:650}a{color:#2457d6}.note{font-size:14px}
+  </style>
+  <style>
+    #result:empty{min-height:0;margin-top:0}
+    #result[data-kind]{padding:20px;border:1px solid;border-radius:12px}
+    #result[data-kind="spam"]{background:#fff4ed;border-color:#edb38d;color:#81360d}
+    #result[data-kind="ham"]{background:#edf8f2;border-color:#9dcbb0;color:#185638}
+    #result h2{font-size:26px;margin:0 0 6px}
+    #result p{color:inherit;font-size:16px;font-weight:400;margin:0}
+  </style>
+</head>
+<body><main>
+  <h1>Is this message spam?</h1>
+  <p>Try a made-up message to see whether it looks like spam.</p>
+  <form id="form">
+    <label for="message">Message</label>
+    <textarea id="message" maxlength="2000" required placeholder="Can we meet for lunch at one?"></textarea>
+    <button id="submit" type="submit">Check message</button>
+  </form>
+  <div id="result" role="status" aria-live="polite"></div>
+  <p class="note">Predictions can be wrong. Use synthetic examples rather than private messages. This demo does not store message text.</p>
+  <a href="/docs">Explore the API</a>
+</main>
+<script>
+  const form = document.querySelector('#form');
+  const result = document.querySelector('#result');
+  const button = document.querySelector('#submit');
+  form.addEventListener('submit', async event => {
+    event.preventDefault();
+    result.removeAttribute('data-kind');
+    const message = document.querySelector('#message').value.trim();
+    if (!message) { result.textContent = 'Enter a message first.'; return; }
+    button.disabled = true;
+    result.textContent = 'Checking…';
+    try {
+      const response = await fetch('/predict', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message})});
+      if (!response.ok) throw new Error(`The API returned HTTP ${response.status}. Check the input or server.`);
+      const data = await response.json();
+      if (!['spam', 'ham'].includes(data.label)) throw new Error('Could not read the prediction. Please try again.');
+      const isSpam = data.label === 'spam';
+      const heading = document.createElement('h2');
+      heading.textContent = isSpam ? 'Spam' : 'Not spam';
+      const explanation = document.createElement('p');
+      explanation.textContent = isSpam
+        ? 'This message looks like an unwanted or promotional message.'
+        : 'This message looks like an ordinary message.';
+      result.replaceChildren(heading, explanation);
+      result.dataset.kind = data.label;
+    } catch (error) { result.textContent = error.message || 'Could not reach the API. Check that the server is running.'; }
+    finally { button.disabled = false; }
+  });
+</script>
+</body></html>
