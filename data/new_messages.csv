@@ -1,0 +1,41 @@
+label,message
+spam,Your UPI profile needs reactivation. Open the attached page and enter your PIN to keep payments working.
+spam,An eKYC update is pending. Install the attached APK and share the OTP with our verification agent.
+spam,Scan this QR code and type your banking PIN to receive the pending refund.
+spam,Your wallet access will close today. Send your recovery phrase to the support chat to restore it.
+spam,A courier cannot deliver your parcel. Submit card details through the attached short link to reschedule.
+spam,We detected a device issue. Install our remote access app and let the agent control your phone.
+spam,Your electricity connection is scheduled for suspension. Transfer the amount to this personal UPI address.
+spam,A tax refund awaits identity verification. Enter your debit card PIN on the attached page.
+spam,This is your manager on a replacement number. Buy gift cards now and send photos of their codes.
+spam,An investment mentor has reserved a crypto allocation. Transfer funds to the personal wallet to activate it.
+spam,Your SIM registration is incomplete. Share the OTP you just received with our support agent.
+spam,A payroll correction needs your password. Reply with your employee login details.
+spam,Your marketplace buyer has sent a QR code. Scan and enter your PIN to receive their payment.
+spam,A subscription refund needs a screen sharing session. Install the remote desktop app from this attachment.
+spam,The recruitment process requires a deposit to a personal bank account before any interview.
+spam,Your bank account requires a certificate update. Upload your card photos and PIN using the attached form.
+spam,A delivery agent requests an OTP for a parcel you never ordered. Send it to this chat immediately.
+spam,Your cloud account will close. Send the recovery codes to this support mailbox to retain access.
+spam,An online task platform requires an upfront crypto deposit before you can withdraw earnings.
+spam,The attached app activates a refund. Disable phone security and install it from this message.
+ham,The UPI payment at the cafe went through. I will send you my share after lunch.
+ham,Please complete your KYC through the bank app you already use. Do not share your OTP with anyone.
+ham,The parcel is at reception. Pick it up when you return from class.
+ham,I booked the electricity service appointment for tomorrow morning.
+ham,Can you review the project report before our meeting this afternoon?
+ham,Our college workshop starts at nine. Bring your laptop and charger.
+ham,The library has extended the return date for your borrowed book.
+ham,The tax discussion with our accountant is scheduled for Monday.
+ham,Your subscription renewal appears in the app. We can review it together later.
+ham,The recruitment team confirmed the interview room and time by email.
+ham,I changed my phone number. Let us meet at our usual cafe on Saturday.
+ham,The delivery arrived early. Your package is on the table at home.
+ham,The team will discuss the cloud account settings during our regular meeting.
+ham,Your bank statement is available in the official app. I downloaded mine yesterday.
+ham,The QR code on the restaurant table opens the food menu.
+ham,The payroll team asked us to review the holiday calendar on the company portal.
+ham,Please bring the gift cards we bought for our colleagues to the farewell party.
+ham,Our mentor moved the investment literacy session to next week.
+ham,The online assignment is available on the course portal until Friday.
+ham,Let us check the refund status together using the retailer app.

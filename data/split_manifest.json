@@ -1,0 +1,24 @@
+{
+  "source_url": "https://archive.ics.uci.edu/static/public/228/sms+spam+collection.zip",
+  "random_seed": 42,
+  "raw_rows": 5574,
+  "unique_messages": 5159,
+  "deduplication": "strip whitespace and casefold text",
+  "files": {
+    "train.csv": {
+      "rows": 3611,
+      "spam_rows": 449,
+      "sha256": "335a6b0b413f7c6f88a79657a3f8ec73fb5891727e3abc89e61b815f6ec01303"
+    },
+    "baseline.csv": {
+      "rows": 774,
+      "spam_rows": 97,
+      "sha256": "80165fe86de5bd3ade3c68fa3fcd3947f7dfcb4d418802f1b21539a848568103"
+    },
+    "new_same_distribution.csv": {
+      "rows": 774,
+      "spam_rows": 96,
+      "sha256": "e0f8000fe522947ed2de706e556018331400c3351d74c9961829ba8a8601293e"
+    }
+  }
+}
