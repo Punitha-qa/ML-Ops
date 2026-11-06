@@ -15,9 +15,11 @@ Open <http://127.0.0.1:8080>. The Docker build trains a fresh model from the bun
 
 In a production release, CI would normally package an approved model from an artifact registry rather than retrain during every image build.
 
-## Render Free web service (workshop route)
+## Render Free web service (may require card verification)
 
 Render can build the root Dockerfile directly from the public GitHub repository. First ensure the repository contains `Dockerfile`, dependency files, `src/`, `data/`, `labs/` and `scripts/serve.py`.
+
+During this workshop's setup, Render required adding a card even with Free compute selected. The dialog described a temporary US$1 authorization. Deployment was stopped before entering payment details. Use this route only if you accept the account's verification requirements; it is not a guaranteed card-free option.
 
 1. Sign in at <https://dashboard.render.com/> and select **New Web Service**.
 2. Choose **Public Git Repository** and enter `https://github.com/Punitha-qa/ML-Ops`.
