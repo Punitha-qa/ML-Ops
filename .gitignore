@@ -1,0 +1,13 @@
+.venv/
+.video-venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.DS_Store
+.env
+artifacts/*
+!artifacts/.gitkeep
+reports/*
+!reports/.gitkeep
+build/
+.pytest_cache/

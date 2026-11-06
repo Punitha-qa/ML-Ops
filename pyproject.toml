@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sms-mlops-workshop"
+version = "1.0.0"
+description = "Python labs for packaging, serving and monitoring an SMS spam filter"
+requires-python = ">=3.12,<3.13"
+dynamic = ["dependencies"]
+
+[project.optional-dependencies]
+test = ["httpx==0.28.1"]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[tool.setuptools.packages.find]
+where = ["src"]
