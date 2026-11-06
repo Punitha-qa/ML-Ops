@@ -1,0 +1,108 @@
+[
+  {
+    "title": "Your first saved ML model",
+    "kind": "title",
+    "stage": 0,
+    "code": "Program 1  •  Model packaging with joblib",
+    "narration": "In this video, you will follow Program One from beginning to end. We will teach a small SMS spam filter, save its trained pipeline, and load it to classify a new message."
+  },
+  {
+    "title": "An everyday SMS problem",
+    "kind": "messages",
+    "stage": 0,
+    "code": "Input: an SMS message     Output: ham or spam",
+    "narration": "Start with messages you see every day. Can we meet for lunch is an ordinary message, called ham. Claim your free prize now is labeled spam in our teaching examples."
+  },
+  {
+    "title": "Messages and correct answers",
+    "kind": "training_data",
+    "stage": 0,
+    "code": "train_text                    train_labels",
+    "narration": "Our training data contains messages and their correct labels. The first label belongs to the first message. Their order must match. Six examples explain the flow, but are too few for a reliable spam filter."
+  },
+  {
+    "title": "Our pipeline has two steps",
+    "kind": "pipeline",
+    "stage": 1,
+    "code": "Pipeline: text converter followed by classifier",
+    "narration": "The pipeline has two steps. A text converter turns each complete message into a list of numbers. The classifier uses that list to predict ham or spam."
+  },
+  {
+    "title": "One message becomes a list of numbers",
+    "kind": "features",
+    "stage": 1,
+    "code": "TfidfVectorizer()  # word features in a consistent order",
+    "narration": "Here, each column describes a word feature. A row represents a whole message. These decimal numbers are real T F I D F values from our small example. We show only selected word columns."
+  },
+  {
+    "title": "Training teaches both steps",
+    "kind": "fit",
+    "stage": 1,
+    "code": "model.fit(train_text, train_labels)",
+    "narration": "Now we call fit with the training messages and labels. The text converter learns its vocabulary and word statistics. The classifier learns numerical weights from the labeled examples. Both fitted steps now belong to our pipeline."
+  },
+  {
+    "title": "The trained work lives in memory",
+    "kind": "memory",
+    "stage": 2,
+    "code": "Python memory holds the fitted pipeline while the process runs.",
+    "narration": "The trained pipeline currently lives in Python's memory. If that process closes, these in memory objects disappear. To reuse the trained work later, we need a file that stays on disk."
+  },
+  {
+    "title": "Save the fitted pipeline",
+    "kind": "save",
+    "stage": 2,
+    "code": "joblib.dump(model, model_file)",
+    "narration": "Joblib dump writes the whole fitted pipeline to a file. The file contains both the trained text converter and the classifier. Saving does not train again. It preserves what fit already learned."
+  },
+  {
+    "title": "Load the trained work later",
+    "kind": "load",
+    "stage": 3,
+    "code": "loaded_model = joblib.load(model_file)",
+    "narration": "Later, joblib load reads the saved file and restores the fitted pipeline into memory. Loading can happen in a new Python process. We now have a pipeline ready to use, without calling fit again."
+  },
+  {
+    "title": "Give the loaded pipeline a new message",
+    "kind": "new_message",
+    "stage": 4,
+    "code": "prediction = loaded_model.predict([new_message])",
+    "narration": "Our new message is: Can we meet for lunch tomorrow? We give that message to the loaded pipeline. Its fitted text converter prepares the numbers using the same vocabulary as training."
+  },
+  {
+    "title": "Read the prediction",
+    "kind": "result",
+    "stage": 4,
+    "code": "print(prediction[0])  # ham for this example",
+    "narration": "The trained classifier reads those numbers and returns ham for this example. That means it predicts an ordinary message. This is a model prediction, so it can still be wrong on other messages."
+  },
+  {
+    "title": "The complete Program 1 flow",
+    "kind": "overview",
+    "stage": 4,
+    "code": "fit()             dump()             load()             predict()",
+    "narration": "Here is the complete journey. Labeled messages teach the pipeline. Dump saves it. Load restores it. Predict uses it. Notice that training comes before saving. Prediction uses the fitted pipeline."
+  },
+  {
+    "title": "Pause and discuss with your group",
+    "kind": "question",
+    "stage": 4,
+    "code": "Which TWO fitted parts must we save together?",
+    "pause": 6,
+    "narration": "Pause here and discuss with your group. Which two fitted parts must we save together? Think about your answer before continuing."
+  },
+  {
+    "title": "Both fitted steps belong in the file",
+    "kind": "answer",
+    "stage": 4,
+    "code": "Saved pipeline = fitted text converter + trained classifier",
+    "narration": "We save the fitted text converter and the trained classifier together. The converter must preserve the meaning of each numerical position. The classifier depends on that same meaning when it makes a prediction."
+  },
+  {
+    "title": "Your turn to run Program 1",
+    "kind": "finish",
+    "stage": 4,
+    "code": "python videos/program-1/example.py",
+    "narration": "You are ready to run Program One. Watch the printed prediction, then change the new message and try again. Only load joblib files from trusted sources. Use the larger lab dataset to evaluate performance."
+  }
+]

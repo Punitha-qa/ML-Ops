@@ -1,0 +1,194 @@
+1
+00:00:00,000 --> 00:00:04,687
+In this video, you will follow Program One from beginning to end. We
+
+2
+00:00:04,687 --> 00:00:09,373
+will teach a small SMS spam filter, save its trained pipeline, and load
+
+3
+00:00:09,373 --> 00:00:11,536
+it to classify a new message.
+
+4
+00:00:13,050 --> 00:00:17,643
+Start with messages you see every day. Can we meet for lunch is
+
+5
+00:00:17,643 --> 00:00:22,237
+an ordinary message, called ham. Claim your free prize now is labeled
+spam
+
+6
+00:00:22,237 --> 00:00:23,650
+in our teaching examples.
+
+7
+00:00:25,200 --> 00:00:30,217
+Our training data contains messages and their correct labels. The first
+label belongs
+
+8
+00:00:30,217 --> 00:00:35,235
+to the first message. Their order must match. Six examples explain the
+flow,
+
+9
+00:00:35,235 --> 00:00:38,709
+but are too few for a reliable spam filter.
+
+10
+00:00:40,250 --> 00:00:45,078
+The pipeline has two steps. A text converter turns each complete message
+into
+
+11
+00:00:45,078 --> 00:00:49,907
+a list of numbers. The classifier uses that list to predict ham or
+
+12
+00:00:49,907 --> 00:00:50,278
+spam.
+
+13
+00:00:51,800 --> 00:00:56,656
+Here, each column describes a word feature. A row represents a whole
+message.
+
+14
+00:00:56,656 --> 00:01:01,513
+These decimal numbers are real T F I D F values from our
+
+15
+00:01:01,513 --> 00:01:04,501
+small example. We show only selected word columns.
+
+16
+00:01:06,050 --> 00:01:11,405
+Now we call fit with the training messages and labels. The text
+converter
+
+17
+00:01:11,405 --> 00:01:16,761
+learns its vocabulary and word statistics. The classifier learns
+numerical weights from the
+
+18
+00:01:16,761 --> 00:01:20,881
+labeled examples. Both fitted steps now belong to our pipeline.
+
+19
+00:01:22,400 --> 00:01:27,491
+The trained pipeline currently lives in Python's memory. If that process
+closes, these
+
+20
+00:01:27,491 --> 00:01:32,583
+in memory objects disappear. To reuse the trained work later, we need a
+
+21
+00:01:32,583 --> 00:01:34,541
+file that stays on disk.
+
+22
+00:01:36,050 --> 00:01:40,998
+Joblib dump writes the whole fitted pipeline to a file. The file
+contains
+
+23
+00:01:40,998 --> 00:01:45,946
+both the trained text converter and the classifier. Saving does not
+train again.
+
+24
+00:01:45,946 --> 00:01:48,229
+It preserves what fit already learned.
+
+25
+00:01:49,750 --> 00:01:54,620
+Later, joblib load reads the saved file and restores the fitted pipeline
+into
+
+26
+00:01:54,620 --> 00:01:59,490
+memory. Loading can happen in a new Python process. We now have a
+
+27
+00:01:59,490 --> 00:02:02,487
+pipeline ready to use, without calling fit again.
+
+28
+00:02:04,000 --> 00:02:08,779
+Our new message is: Can we meet for lunch tomorrow? We give that
+
+29
+00:02:08,779 --> 00:02:13,558
+message to the loaded pipeline. Its fitted text converter prepares the
+numbers using
+
+30
+00:02:13,558 --> 00:02:15,396
+the same vocabulary as training.
+
+31
+00:02:16,900 --> 00:02:21,633
+The trained classifier reads those numbers and returns ham for this
+example. That
+
+32
+00:02:21,633 --> 00:02:26,365
+means it predicts an ordinary message. This is a model prediction, so it
+
+33
+00:02:26,365 --> 00:02:28,913
+can still be wrong on other messages.
+
+34
+00:02:30,450 --> 00:02:36,217
+Here is the complete journey. Labeled messages teach the pipeline. Dump
+saves it.
+
+35
+00:02:36,217 --> 00:02:41,985
+Load restores it. Predict uses it. Notice that training comes before
+saving. Prediction
+
+36
+00:02:41,985 --> 00:02:43,760
+uses the fitted pipeline.
+
+37
+00:02:45,300 --> 00:02:50,149
+Pause here and discuss with your group. Which two fitted parts must we
+
+38
+00:02:50,149 --> 00:02:53,133
+save together? Think about your answer before continuing.
+
+39
+00:02:59,150 --> 00:03:03,934
+We save the fitted text converter and the trained classifier together.
+The converter
+
+40
+00:03:03,934 --> 00:03:08,718
+must preserve the meaning of each numerical position. The classifier
+depends on that
+
+41
+00:03:08,718 --> 00:03:11,294
+same meaning when it makes a prediction.
+
+42
+00:03:12,800 --> 00:03:17,946
+You are ready to run Program One. Watch the printed prediction, then
+change
+
+43
+00:03:17,946 --> 00:03:23,091
+the new message and try again. Only load joblib files from trusted
+sources.
+
+44
+00:03:23,091 --> 00:03:26,258
+Use the larger lab dataset to evaluate performance.

@@ -1,0 +1,30 @@
+{
+  "columns": [
+    "prize",
+    "meet",
+    "lunch",
+    "tomorrow"
+  ],
+  "rows": [
+    {
+      "message": "Can we meet for lunch tomorrow?",
+      "values": [
+        0.0,
+        0.408,
+        0.408,
+        0.408
+      ],
+      "prediction": "ham"
+    },
+    {
+      "message": "Claim your free prize now",
+      "values": [
+        0.511,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "prediction": "spam"
+    }
+  ]
+}
