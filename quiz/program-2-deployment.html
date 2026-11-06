@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Program 2 Quiz: Model Deployment</title>
+  <link rel="stylesheet" href="quiz.css">
+  <script src="quiz.js" defer></script>
+</head>
+<body>
+  <main>
+    <a class="back" href="index.html">← All lab quizzes</a>
+    <header class="intro">
+      <p class="eyebrow">After Program 2</p>
+      <h1>Model Deployment</h1>
+      <p>Discuss each question as a group, agree on one answer, then check your choices. Think about the path from a user's message to a prediction response.</p>
+    </header>
+    <form id="quiz" novalidate>
+      <fieldset data-answer="b" data-explanation="The webpage or another client sends input to an API endpoint. FastAPI validates the request, passes the message to the loaded model pipeline, and returns a structured response.">
+        <legend><span class="q-number">1</span>What is the purpose of the <code>POST /predict</code> endpoint?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><span>To retrain the model each time a user opens the page</span></label>
+          <label class="option"><input type="radio" name="q1" value="b"><span>To receive a message and return its prediction</span></label>
+          <label class="option"><input type="radio" name="q1" value="c"><span>To display the source code of the model artifact</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="a" data-explanation="A JSON request gives the API a predictable structure, for example {\"message\": \"Your parcel is waiting\"}. The server can validate that the required field exists and contains text.">
+        <legend><span class="q-number">2</span>Which request body is clearest for sending one message?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q2" value="a"><span><code>{"message": "Your parcel is waiting"}</code></span></label>
+          <label class="option"><input type="radio" name="q2" value="b"><span><code>{"model": "train now"}</code></span></label>
+          <label class="option"><input type="radio" name="q2" value="c"><span><code>{"result": "spam"}</code> before the server has made a prediction</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="c" data-explanation="Loading once when the app starts avoids repeatedly reading the artifact for every request and keeps the model ready to serve predictions. The API can then reuse that in-memory pipeline.">
+        <legend><span class="q-number">3</span>Why load the saved model when the API app starts?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q3" value="a"><span>To make the artifact train itself in the background</span></label>
+          <label class="option"><input type="radio" name="q3" value="b"><span>To hide the model from the prediction endpoint</span></label>
+          <label class="option"><input type="radio" name="q3" value="c"><span>So requests can reuse the loaded model without loading it each time</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="b" data-explanation="The browser page is a client. It collects a message, sends it to the API, and presents the response. Keeping this boundary clear helps diagnose whether a problem is in the page, API, or model.">
+        <legend><span class="q-number">4</span>In this project, how should the simple webpage get a prediction?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q4" value="a"><span>By opening and editing the joblib file directly</span></label>
+          <label class="option"><input type="radio" name="q4" value="b"><span>By sending the message to the API and displaying its response</span></label>
+          <label class="option"><input type="radio" name="q4" value="c"><span>By independently retraining a second model in the browser</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="a" data-explanation="A health endpoint can tell a platform whether the service is responding. It does not prove that the model's predictions are accurate; that requires evaluating predictions against known labels.">
+        <legend><span class="q-number">5</span>What does a health check tell an operator?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q5" value="a"><span>Whether the service is available to respond</span></label>
+          <label class="option"><input type="radio" name="q5" value="b"><span>Whether the model has perfect precision and recall</span></label>
+          <label class="option"><input type="radio" name="q5" value="c"><span>Whether every message received is spam</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="c" data-explanation="SMS messages may contain personal information. Production systems should avoid collecting or retaining message text unnecessarily, protect logs and access, and follow the organization's data handling rules.">
+        <legend><span class="q-number">6</span>What should a team consider before logging prediction requests?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q6" value="a"><span>Log every full message forever so debugging is easy</span></label>
+          <label class="option"><input type="radio" name="q6" value="b"><span>Make logs public so users can review model behavior</span></label>
+          <label class="option"><input type="radio" name="q6" value="c"><span>Messages can contain personal data, so minimize and protect what is logged</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <div class="actions"><button type="submit">Check group answers</button><button type="reset" class="secondary">Try again</button><p id="result" role="status" aria-live="polite"></p></div>
+    </form>
+  </main>
+</body>
+</html>

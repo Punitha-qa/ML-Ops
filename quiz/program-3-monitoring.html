@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Program 3 Quiz: Model Monitoring</title>
+  <link rel="stylesheet" href="quiz.css">
+  <script src="quiz.js" defer></script>
+</head>
+<body>
+  <main>
+    <a class="back" href="index.html">← All lab quizzes</a>
+    <header class="intro">
+      <p class="eyebrow">After Program 3</p>
+      <h1>Model Monitoring</h1>
+      <p>Discuss each question as a group, agree on one answer, then check your choices. Focus on what the measurements do—and do not—tell you.</p>
+    </header>
+    <form id="quiz" novalidate>
+      <fieldset data-answer="a" data-explanation="Precision answers: of all messages predicted as spam, what fraction really were spam? Low precision means more ordinary messages are incorrectly flagged as spam.">
+        <legend><span class="q-number">1</span>For the spam class, what does precision measure?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><span>Of messages predicted as spam, how many really are spam</span></label>
+          <label class="option"><input type="radio" name="q1" value="b"><span>Of all ordinary messages, how many words they contain</span></label>
+          <label class="option"><input type="radio" name="q1" value="c"><span>How quickly the API returns a prediction</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="c" data-explanation="Recall answers: of all messages that truly are spam, what fraction did the model catch? Low recall means more spam messages are missed and labeled as ordinary.">
+        <legend><span class="q-number">2</span>For the spam class, what does recall measure?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q2" value="a"><span>How many model files are in the project</span></label>
+          <label class="option"><input type="radio" name="q2" value="b"><span>How often the server is available</span></label>
+          <label class="option"><input type="radio" name="q2" value="c"><span>Of all true spam messages, how many the model catches</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="b" data-explanation="To calculate performance metrics such as precision and recall, we need the true labels for the messages as well as the model's predictions. Predictions alone do not tell us which ones were correct.">
+        <legend><span class="q-number">3</span>What do we need to measure prediction quality on new messages?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q3" value="a"><span>Only the text and the model's predicted labels</span></label>
+          <label class="option"><input type="radio" name="q3" value="b"><span>Predictions and trusted true labels for those messages</span></label>
+          <label class="option"><input type="radio" name="q3" value="c"><span>Only the date when the model was saved</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="a" data-explanation="A baseline provides a reference point. Comparing the same metrics on new, labeled data can reveal a change worth investigating; the comparison is meaningful only when the datasets and evaluation method are understood.">
+        <legend><span class="q-number">4</span>Why compare new-data metrics with the original baseline?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q4" value="a"><span>To see whether measured performance has changed over time</span></label>
+          <label class="option"><input type="radio" name="q4" value="b"><span>To prove the model will behave the same on every message</span></label>
+          <label class="option"><input type="radio" name="q4" value="c"><span>To replace the need for labels on the new dataset</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="c" data-explanation="A performance drop is a signal to investigate. Check data quality, label quality, and what changed. Retraining may help, but must be evaluated before replacing the current model.">
+        <legend><span class="q-number">5</span>New-data recall has dropped. What is the best next step?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q5" value="a"><span>Automatically replace the current model immediately</span></label>
+          <label class="option"><input type="radio" name="q5" value="b"><span>Ignore the result because the API is still running</span></label>
+          <label class="option"><input type="radio" name="q5" value="c"><span>Investigate the data and labels, then evaluate whether retraining helps</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="b" data-explanation="A candidate model should be evaluated against the current model using a suitable held-out labeled dataset and agreed metrics. Promote it only if it meets the team's requirements; keep a way to roll back.">
+        <legend><span class="q-number">6</span>A retrained model is ready. What should happen before it replaces the current model?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q6" value="a"><span>Deploy it immediately because newer always means better</span></label>
+          <label class="option"><input type="radio" name="q6" value="b"><span>Compare it with the current model on held-out labeled data and check requirements</span></label>
+          <label class="option"><input type="radio" name="q6" value="c"><span>Delete the old model before running any evaluation</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <div class="actions"><button type="submit">Check group answers</button><button type="reset" class="secondary">Try again</button><p id="result" role="status" aria-live="polite"></p></div>
+    </form>
+  </main>
+</body>
+</html>

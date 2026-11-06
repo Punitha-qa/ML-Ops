@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Program 1 Quiz: Model Packaging</title>
+  <link rel="stylesheet" href="quiz.css">
+  <script src="quiz.js" defer></script>
+</head>
+<body>
+  <main>
+    <a class="back" href="index.html">← All lab quizzes</a>
+    <header class="intro">
+      <p class="eyebrow">After Program 1</p>
+      <h1>Model Packaging</h1>
+      <p>Discuss each question as a group, agree on one answer, then check your choices. The explanations recap why the answer matters in practice.</p>
+    </header>
+    <form id="quiz" novalidate>
+      <fieldset data-answer="a" data-explanation="The vectorizer learns how to turn words into numbers during training. Reusing that fitted vectorizer means new messages are represented in the same way the classifier expects.">
+        <legend><span class="q-number">1</span>Why save the fitted text vectorizer together with the classifier?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q1" value="a"><span>New messages must be transformed the same way as training messages</span></label>
+          <label class="option"><input type="radio" name="q1" value="b"><span>The vectorizer contains all of the original SMS messages</span></label>
+          <label class="option"><input type="radio" name="q1" value="c"><span>The classifier cannot be saved unless the vectorizer is a separate program</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="b" data-explanation="A fitted pipeline bundles the learned text transformation and classifier so prediction applies the right steps in order. The training dataset itself is not the model artifact.">
+        <legend><span class="q-number">2</span>What should the saved spam-filter artifact contain?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q2" value="a"><span>Only the Python source code for the classifier</span></label>
+          <label class="option"><input type="radio" name="q2" value="b"><span>The fitted text-processing step and fitted classifier</span></label>
+          <label class="option"><input type="radio" name="q2" value="c"><span>A copy of every message a user may send in the future</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="c" data-explanation="joblib.load reads the serialized artifact and recreates the saved Python objects in memory. Once loaded, the pipeline can transform a new message and predict its label.">
+        <legend><span class="q-number">3</span>After calling <code>joblib.load</code>, what can the program do?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q3" value="a"><span>Automatically retrain the model on the newest messages</span></label>
+          <label class="option"><input type="radio" name="q3" value="b"><span>Turn the saved artifact into a web server</span></label>
+          <label class="option"><input type="radio" name="q3" value="c"><span>Use the restored pipeline to make predictions</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="a" data-explanation="A fresh-process check helps show that prediction depends on the saved artifact and its documented dependencies, rather than temporary objects left over from training in the same notebook or script.">
+        <legend><span class="q-number">4</span>Why test loading the artifact in a fresh Python process?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q4" value="a"><span>To check it can be reused outside the training run</span></label>
+          <label class="option"><input type="radio" name="q4" value="b"><span>To make its predictions more accurate without new data</span></label>
+          <label class="option"><input type="radio" name="q4" value="c"><span>To avoid installing the packages used by the project</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="b" data-explanation="A clear artifact version helps a team identify what is running, compare releases, and roll back if a newer model causes problems. A filename alone is only a first step; real teams also record metadata and lineage.">
+        <legend><span class="q-number">5</span>Why give a model artifact a version such as <code>sms-spam-1.0.0.joblib</code>?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q5" value="a"><span>To guarantee the model is correct for every future dataset</span></label>
+          <label class="option"><input type="radio" name="q5" value="b"><span>To identify and track which saved model is being used</span></label>
+          <label class="option"><input type="radio" name="q5" value="c"><span>To make the file smaller than the training data</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <fieldset data-answer="c" data-explanation="joblib files use Python serialization. Loading a file from an untrusted source can execute malicious code, so production systems should only load artifacts from trusted, controlled sources.">
+        <legend><span class="q-number">6</span>An unknown person emails you a joblib file. What is the safe practice?</legend>
+        <div class="options">
+          <label class="option"><input type="radio" name="q6" value="a"><span>Load it first, then check whether the predictions look sensible</span></label>
+          <label class="option"><input type="radio" name="q6" value="b"><span>Rename the file so Python treats it as safe</span></label>
+          <label class="option"><input type="radio" name="q6" value="c"><span>Do not load it unless its source is trusted and verified</span></label>
+        </div><p class="feedback" aria-live="polite"></p>
+      </fieldset>
+      <div class="actions"><button type="submit">Check group answers</button><button type="reset" class="secondary">Try again</button><p id="result" role="status" aria-live="polite"></p></div>
+    </form>
+  </main>
+</body>
+</html>
